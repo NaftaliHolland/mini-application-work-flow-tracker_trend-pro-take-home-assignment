@@ -1,8 +1,10 @@
+from datetime import date
+
 from ninja import Schema
 
-class ApplicationIn(Schema):
-    pass
 
-
-class ApplicationOut(Schema):
-    pass
+class ApplicationCreateIn(Schema):
+    applicant_name: str
+    applicant_email: str
+    application_type: str
+    description: str = None

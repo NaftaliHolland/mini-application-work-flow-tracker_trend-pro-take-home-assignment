@@ -18,15 +18,15 @@ class Application(models.Model):
         ("rejected", "Rejected"),
     ]
 
-    tracking_number = models.CharField(max_length=100)
+    tracking_number = models.CharField(max_length=100, unique=True)
     applicant_name = models.CharField(max_length=255)
     applicant_email = models.EmailField()
     company_name = models.CharField(max_length=255)
     application_type = models.CharField(max_length=50, choices=APPLICATION_TYPE_CHOICES)
-    description = models.TextField()
+    description = models.TextField(null=True)
     status = models.CharField(max_length=50, choices=APPLICATION_STATUS_CHOICES, default="draft")
     reviewer_comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now=True)
-    submitted_at = models.DateTimeField()
-    reviewed_at = models.DateTimeField()
+    updated_at = models.DateTimeField(auto_now=True)
+    submitted_at = models.DateTimeField(blank=True, null=True)
+    reviewed_at = models.DateTimeField(blank=True, null=True)

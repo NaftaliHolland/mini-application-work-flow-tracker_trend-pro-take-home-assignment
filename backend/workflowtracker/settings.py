@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--*)kup0-%1o%48ltcf+4owe4u#v)hg&&9^v05+xpvf)2xq9$*2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "sylvester-petalodic-streamingly.ngrok-free.dev"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'application',
 ]
 
 MIDDLEWARE = [
