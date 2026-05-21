@@ -9,7 +9,7 @@ from utils import generate_random_string
 from .models import Application
 from .schemas import (ApplicationCreateIn, ApplicationOut, ApplicationUpdate,
                       ReviewSchema)
-from .services import OperationNotAllowedException
+from .services import OperationNotAllowedException, start_application_review
 from .services import submit_application as submit
 from .services import update_application as update_app
 
@@ -68,13 +68,16 @@ def submit_application(request, application_id: int):
 
     return application
 
-@api.post("/applications/{application_id}/reviews", response=ApplicationOut)
+@api.post("/applications/{application_id}/reviews", response={200: ApplicationOut, 400: dict, 500: dict})
 def review_application(request, application_id: int):
     application = get_object_or_404(Application, id=application_id)
 
-    application.status = "under_review"
-
-    application.save(update_fields=["status"])
+    try:
+        application = start_application_review(application)
+    except OperationNotAllowedException as e:
+        return Status(400, {"message": str(e)})
+    except Exception as e:
+        return Status(500, {"message": str(e)})
 
     return application
 

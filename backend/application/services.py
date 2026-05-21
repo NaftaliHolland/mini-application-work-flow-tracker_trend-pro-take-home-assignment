@@ -30,5 +30,11 @@ def submit_application(application: Application) -> Application:
     return application
 
 def start_application_review(application: Application) -> Application:
-    pass
+    if application.status != "submitted":
+        raise OperationNotAllowedException("Only submitted applications can be reviewed")
 
+    application.status = "under_review"
+
+    application.save(update_fields=["status"])
+
+    return application

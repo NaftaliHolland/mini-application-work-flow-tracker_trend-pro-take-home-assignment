@@ -48,6 +48,6 @@ class ReviewApplicationTestCase(TestCase):
             status="draft",
         )
 
-        with self.assertRaises(Exception):
-            start_application_review(application=application)
+            with self.assertRaises(Exception):
+                start_application_review(application=application)
 
