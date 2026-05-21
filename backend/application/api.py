@@ -9,7 +9,8 @@ from utils import generate_random_string
 from .models import Application
 from .schemas import (ApplicationCreateIn, ApplicationOut, ApplicationUpdate,
                       ReviewSchema)
-from .services import OperationNotAllowedException, start_application_review, add_reviewer_comment
+from .services import (NeedsCommentException, OperationNotAllowedException,
+                       add_reviewer_comment, start_application_review)
 from .services import submit_application as submit
 from .services import update_application as update_app
 
@@ -44,11 +45,11 @@ def create_application(request, payload: ApplicationCreateIn):
 @api.patch("/applications/{application_id}", response={200: ApplicationOut, 400: dict, 500: dict})
 def update_application(request, application_id: int, payload: ApplicationUpdate):
     application = get_object_or_404(Application, id=application_id)
-    data = payload.dict()
+    data = payload.dict(exclude_unset=True)
 
     try:
         application = update_app(application=application, data=data)
-    except OperationNotAllowedException as e:
+    except (OperationNotAllowedException, NeedsCommentException) as e:
         return Status(400, {"message": str(e)})
     except Exception as e:
         return Status(500, {"message": str(e)})

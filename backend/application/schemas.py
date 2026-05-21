@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 from ninja import ModelSchema, Schema
 
@@ -12,12 +13,13 @@ class ApplicationCreateIn(Schema):
     description: str | None = None
 
 class ApplicationUpdate(Schema):
-    applicant_name: str = ""
-    applicant_email: str = ""
-    company_name: str = ""
-    application_type: str = ""
-    description: str = ""
-    status: str = ""
+    applicant_name: str | None = None
+    applicant_email: str | None = None
+    company_name: str | None = None
+    application_type: str | None = None
+    description: str | None = None
+    status: str | None = None
+    reviewer_comment: str | None = None
 
 class ApplicationOut(ModelSchema):
     class Meta:

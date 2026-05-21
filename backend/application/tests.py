@@ -1,8 +1,9 @@
 from django.test import TestCase
 
 from .models import Application
-from .services import (add_reviewer_comment, start_application_review,
-                       submit_application, update_application)
+from .services import (NeedsCommentException, add_reviewer_comment,
+                       start_application_review, submit_application,
+                       update_application)
 
 
 class UpdateApplicationTestCase(TestCase):
@@ -27,10 +28,10 @@ class UpdateApplicationTestCase(TestCase):
             applicant_email="john@mail.com",
             company_name="Test Company",
             application_type="renewal",
-            status="approved",
+            status="under_review",
         )
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(NeedsCommentException):
             update_application(application=application, data={"status": "need_more_information"})
 
     def test_missing_comment_for_rejected_raises(self):
@@ -40,11 +41,11 @@ class UpdateApplicationTestCase(TestCase):
             applicant_email="john@mail.com",
             company_name="Test Company",
             application_type="renewal",
-            status="draft",
+            status="under_review",
         )
 
-        with self.assertRaises(Exception):
-            update_application(application=application, data={"status": "need_more_information"})
+        with self.assertRaises(NeedsCommentException):
+            update_application(application=application, data={"status": "rejected"})
 
 class SubmitApplicationTestCase(TestCase):
     def test_not_draft_raises(self):

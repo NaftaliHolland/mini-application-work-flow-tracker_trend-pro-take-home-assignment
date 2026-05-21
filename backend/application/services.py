@@ -13,8 +13,14 @@ class NeedsCommentException(Exception):
 
 def update_application(application: Application, data: dict) -> Application:
 
-    if application.status not in ["draft", "need_more_information"]:
-        raise OperationNotAllowedException("Only draft applications can be updated")
+    if application.status in ["approved", "rejected"]:
+        raise OperationNotAllowedException("Approved or Rejected applications can not be edited")
+
+    if data.get("status") == "need_more_information" and not data.get("reviewer_comment"):
+        raise NeedsCommentException("applications that need more information needs a comment")
+
+    if data.get("status") == "rejected" and not data.get("reviewer_comment"):
+        raise NeedsCommentException("rejected applications needs a comment")
 
     for attr, value in data.items():
         setattr(application, attr, value)
