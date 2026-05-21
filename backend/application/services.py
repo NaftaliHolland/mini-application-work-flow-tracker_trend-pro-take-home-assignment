@@ -38,3 +38,13 @@ def start_application_review(application: Application) -> Application:
     application.save(update_fields=["status"])
 
     return application
+
+def add_reviewer_comment(application: Application, reviewer_comment: str) -> Application:
+    if application.status != "under_review":
+        raise OperationNotAllowedException("Only applications under review can be can be reviewed")
+
+    application.reviewer_comment = reviewer_comment
+
+    application.save(update_fields=["reviewer_comment"])
+
+    return application
