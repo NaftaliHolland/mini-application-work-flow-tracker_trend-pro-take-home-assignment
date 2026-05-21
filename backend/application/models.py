@@ -13,7 +13,7 @@ class Application(models.Model):
         ("draft", "Draft"),
         ("submitted", "Submitted"),
         ("under_review", "Under Review"),
-        ("need more information", "Need More Information"),
+        ("need_more_information", "Need More Information"),
         ("approved", "Approved"),
         ("rejected", "Rejected"),
     ]

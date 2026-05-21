@@ -20,6 +20,31 @@ class UpdateApplicationTestCase(TestCase):
         with self.assertRaises(Exception):
             update_application(application=application, data={"status": "draft"})
 
+    def test_missing_comment_for_need_more_information_raises(self):
+        application = Application.objects.create(
+            tracking_number="KSJDKFJ",
+            applicant_name="John Doe",
+            applicant_email="john@mail.com",
+            company_name="Test Company",
+            application_type="renewal",
+            status="approved",
+        )
+
+        with self.assertRaises(Exception):
+            update_application(application=application, data={"status": "need_more_information"})
+
+    def test_missing_comment_for_rejected_raises(self):
+        application = Application.objects.create(
+            tracking_number="KSJDKFJ",
+            applicant_name="John Doe",
+            applicant_email="john@mail.com",
+            company_name="Test Company",
+            application_type="renewal",
+            status="draft",
+        )
+
+        with self.assertRaises(Exception):
+            update_application(application=application, data={"status": "need_more_information"})
 
 class SubmitApplicationTestCase(TestCase):
     def test_not_draft_raises(self):

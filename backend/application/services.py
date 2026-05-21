@@ -7,9 +7,13 @@ class OperationNotAllowedException(Exception):
     # I have this so that I can catch a less general Exception in the route handler and return a 400 instead of a 500
     pass
 
+
+class NeedsCommentException(Exception):
+    pass
+
 def update_application(application: Application, data: dict) -> Application:
 
-    if application.status != "draft":
+    if application.status not in ["draft", "need_more_information"]:
         raise OperationNotAllowedException("Only draft applications can be updated")
 
     for attr, value in data.items():
