@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure--*)kup0-%1o%48ltcf+4owe4u#v)hg&&9^v05+xpvf)2xq9$*2
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "sylvester-petalodic-streamingly.ngrok-free.dev"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
 
 
 # Application definition
@@ -37,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'application',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
