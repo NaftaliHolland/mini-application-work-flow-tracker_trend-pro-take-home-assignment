@@ -1,6 +1,7 @@
 import { Link } from "react-router"
 import { ApplicationsTable } from "@/components/applications-table"
 import { useQuery } from "@tanstack/react-query"
+import ApplicationFormDialog from "@/components/application-form-dialog"
 
 export interface Application {
 	id: number
@@ -48,7 +49,10 @@ export default function ApplicationsPage() {
 
 	return (
 		<div className="px-12 py-8 pspace-y-4">
-			<p>Applications</p>
+			<div className="flex justify-between">
+				<p>Applications</p>
+				<ApplicationFormDialog />
+			</div>
 			<ApplicationsTable applications={data} />
 		</div>
 	)
