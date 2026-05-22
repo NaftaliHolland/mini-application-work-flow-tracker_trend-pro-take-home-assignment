@@ -8,14 +8,25 @@ export interface Application {
 	applicant_name: string
 	applicant_email: string
 	company_name: string
-	application_type: string
+	application_type: "recordation" |
+	"renewal" |
+	"change_of_ownership" |
+	"change_of_name" |
+	"discontinuation"
+
 	description?: string
-	status: string
+	status: "draft" |
+	"under_review" |
+	"submitted" |
+	"under_review" |
+	"need_more_information" |
+	"approved" |
+	"rejected"
 	reviewer_comment?: string
 	created_at: string
 	updated_at?: string
-	submitted_at?: any
-	reviewed_at?: any
+	submitted_at?: string
+	reviewed_at?: string
 }
 
 export default function ApplicationsPage() {
