@@ -50,31 +50,31 @@ cd application-tracker
 ```bash
 cd backend 
 ```
-### 3. Create virtual environment
+### 2. Create virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-### 4. Activate virtual environment
+### 3. Activate virtual environment
 
 ```bash
 source venv/bin/activate
 ```
-### 5. Install dependencies
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 6. Run migrations and seed intial data
+### 5. Run migrations and seed intial data
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 python manage.py seed
 ```
-### 7. Start backend server
+### 6. Start backend server
 
 ```bash
 python manage.py runserver
@@ -115,7 +115,8 @@ http://localhost:5173
 - The system does not require Authentication and Authorization 
 - System does not require comprehnsive testing at its current state
 - The system will be run on localhost
-- Localhost
+- Frontend runs on port port 5173
+- Backend run on port 8000
 
 ## Improvements with more time
 - Add authentication
