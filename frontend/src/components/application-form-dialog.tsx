@@ -150,11 +150,11 @@ export default function ApplicationFormDialog() {
 								<SelectValue placeholder="Select application type" />
 							</SelectTrigger>
 							<SelectContent>
-								<SelectItem value="partnership">Partnership</SelectItem>
-								<SelectItem value="integration">Integration</SelectItem>
-								<SelectItem value="sponsorship">Sponsorship</SelectItem>
-								<SelectItem value="employment">Employment</SelectItem>
-								<SelectItem value="other">Other</SelectItem>
+								<SelectItem value="recordation">Recordation</SelectItem>
+								<SelectItem value="renewal">Renewal</SelectItem>
+								<SelectItem value="change_of_ownership">Change of Ownership</SelectItem>
+								<SelectItem value="change_of_name">Change of Name</SelectItem>
+								<SelectItem value="discontinuation">Discontinuation</SelectItem>
 							</SelectContent>
 						</Select>
 					</div>
