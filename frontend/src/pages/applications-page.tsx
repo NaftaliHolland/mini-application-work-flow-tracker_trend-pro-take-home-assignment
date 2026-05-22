@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query"
 import { Link } from "react-router"
+import { ApplicationsTable } from "@/components/applications-table"
+import { useQuery } from "@tanstack/react-query"
 
-interface Application {
+export interface Application {
 	id: number
 	tracking_number: string
 	applicant_name: string
@@ -35,14 +36,9 @@ export default function ApplicationsPage() {
 	if (error) return "An error occured" + error.message
 
 	return (
-		<div>
+		<div className="px-12 py-8 pspace-y-4">
 			<p>Applications</p>
-			<div className="flex flex-col gap-4">
-				{data.map((application) =>
-					<Link to={`/applications/${application.id}`}>{application.tracking_number}</Link>
-				)
-				}
-			</div>
+			<ApplicationsTable applications={data} />
 		</div>
 	)
 
