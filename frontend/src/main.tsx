@@ -15,15 +15,13 @@ const queryClient = new QueryClient()
 createRoot(document.getElementById("root")!).render(
 	<QueryClientProvider client={queryClient}>
 		<StrictMode>
-			<ThemeProvider>
-				<BrowserRouter>
-					<Routes>
-						<Route path="/" element={<App />} />
-						<Route path="/applications" element={<ApplicationsPage />} />
-						<Route path="/applications/:applicationId" element={<ApplicationDetailPage />} />
-					</Routes>
-				</BrowserRouter>
-			</ThemeProvider>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<App />} />
+					<Route path="/applications" element={<ApplicationsPage />} />
+					<Route path="/applications/:applicationId" element={<ApplicationDetailPage />} />
+				</Routes>
+			</BrowserRouter>
 		</StrictMode>
 	</QueryClientProvider>
 )
