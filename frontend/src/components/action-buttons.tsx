@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import ReviewerCommentDialog from "./reviewer-comment-dialog";
 
 interface ActionButtonsProps {
 	applicationId: number;
@@ -59,6 +60,32 @@ export default function ActionButtons({
 		}
 	)
 
+	const needMoreInfoMutation = useMutation(
+		{
+			mutationFn: () => {
+				return fetch(`http://localhost:8000/api/applications/${applicationId}`, {
+					method: "PATCH",
+					body: JSON.stringify({ "status": "need_more_information" })
+				}
+				);
+			},
+			onSuccess: () => queryClient.invalidateQueries({ queryKey: ['application'] })
+		}
+	)
+
+	const rejectionMutation = useMutation(
+		{
+			mutationFn: () => {
+				return fetch(`http://localhost:8000/api/applications/${applicationId}`, {
+					method: "PATCH",
+					body: JSON.stringify({ "status": "need_more_information" })
+				}
+				);
+			},
+			onSuccess: () => queryClient.invalidateQueries({ queryKey: ['application'] })
+		}
+	)
+
 	return (
 		<div className="flex gap-3">
 			{status === 'draft' && (
@@ -105,11 +132,7 @@ export default function ActionButtons({
 							"Approve"
 						}
 					</Button>
-					<Button
-						variant="outline"
-					>
-						Need More Information
-					</Button>
+					<ReviewerCommentDialog applicationId={applicationId} />
 					<Button
 						variant="destructive"
 					>
