@@ -11,16 +11,16 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog"
 import { Field, FieldLabel } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Textarea } from "@/components/ui/textarea"
 
 interface ReviewerCommentDialogProps {
+	status: string
+	action: string
 	applicationId: number
 }
 
-export default function ReviewerCommentDialog({ applicationId }: ReviewerCommentDialogProps) {
+export default function ReviewerCommentDialog({ status, action, applicationId }: ReviewerCommentDialogProps) {
 
 	const queryClient = useQueryClient()
 
@@ -29,7 +29,7 @@ export default function ReviewerCommentDialog({ applicationId }: ReviewerComment
 			mutationFn: (comment: string) => {
 				return fetch(`http://localhost:8000/api/applications/${applicationId}`, {
 					method: "PATCH",
-					body: JSON.stringify({ "status": "need_more_information", "reviewer_comment": comment })
+					body: JSON.stringify({ "status": status, "reviewer_comment": comment })
 				}
 				);
 			},
@@ -51,20 +51,20 @@ export default function ReviewerCommentDialog({ applicationId }: ReviewerComment
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="outline">
-					Need More Information
+				<Button variant={status == "rejected" ? "destructive" : "outline"}>
+					{action}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-sm">
 				<form onSubmit={onSubmit}>
 					<DialogHeader>
-						<DialogTitle>Reviewer Comment</DialogTitle>
+						<DialogTitle className="pb-2">Reviewer Comment</DialogTitle>
 						<DialogDescription className="sr-only">
 							Comments from reviewer
 						</DialogDescription>
 					</DialogHeader>
 					<Field>
-						<FieldLabel htmlFor="name-1">Comment</FieldLabel>
+						<FieldLabel htmlFor="comment" className="sr-only">Comment</FieldLabel>
 						<Textarea
 							id="comment"
 							name="comment"

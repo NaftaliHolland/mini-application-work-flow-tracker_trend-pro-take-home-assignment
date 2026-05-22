@@ -132,12 +132,16 @@ export default function ActionButtons({
 							"Approve"
 						}
 					</Button>
-					<ReviewerCommentDialog applicationId={applicationId} />
-					<Button
-						variant="destructive"
-					>
-						Reject
-					</Button>
+					<ReviewerCommentDialog
+						status="need_more_information"
+						applicationId={applicationId}
+						action="Need More Information"
+					/>
+					<ReviewerCommentDialog
+						status="rejected"
+						applicationId={applicationId}
+						action="Reject"
+					/>
 				</>
 			)
 			}
