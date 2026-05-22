@@ -123,8 +123,9 @@ http://localhost:5173
 - Better UI
 - Add search, filter, and pagination
 
-## Walkthrough Video
-
+## Screenshots
+![application-listing-page](https://raw.githubusercontent.com/NaftaliHolland/mini-application-work-flow-tracker_trend-pro-take-home-assignment/57851646cb6ac41ce4d8288a64069b257c04febf/Screenshot%202026-05-22%20174226.png)
+![application-details-page](https://raw.githubusercontent.com/NaftaliHolland/mini-application-work-flow-tracker_trend-pro-take-home-assignment/refs/heads/main/Screenshot%202026-05-22%20175043.png)
 ## Contact
 Name: Holland Naftali Nyadimo  
 Email: naftaliholland01@gmail.com
