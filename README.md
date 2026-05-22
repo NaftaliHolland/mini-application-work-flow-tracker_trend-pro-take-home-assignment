@@ -33,44 +33,46 @@ Draft -> Submitted -> Under Review -> Need More Information / Approved / Rejecte
 - React with Vite
 - React Router
 - ShadcnUi
-- Tailwind CSS (or plain CSS depending on implementation)
+- Tailwind CSS
 
-## Backend Setup 
-### 1. Clone the repository
+## Project Setup 
+### Clone the repository
 
 ```bash
-git clone https://github.com/NaftaliHolland/mini-application-work-flow-tracker_trend-pro-take-home-assignment.git
-cd mini-application-work-flow-tracker_trend-pro-take-home-assignment
+git clone https://github.com/NaftaliHolland/mini-application-work-flow-tracker_trend-pro-take-home-assignment.git application-tracker
+cd application-tracker 
 ```
 
-### 2. Create virtual environment
+## Backend Setup 
+
+### 1. Navigate to backend directory
+
+```bash
+cd backend 
+```
+### 3. Create virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-### 3. Activate virtual environment
+### 4. Activate virtual environment
 
 ```bash
 source venv/bin/activate
 ```
-### 4. Install dependencies
+### 5. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Run migrations
+### 6. Run migrations and seed intial data
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
-```
-### 6. Seed test data 
-
-```bash
 python manage.py seed
-python manage.py migrate
 ```
 ### 7. Start backend server
 
@@ -110,8 +112,10 @@ http://localhost:5173
 ```
 
 ## Assumptions made
-- Authentication and authorization were not implemented
-- Very minimal tests were written
+- The system does not require Authentication and Authorization 
+- System does not require comprehnsive testing at its current state
+- The system will be run on localhost
+- Localhost
 
 ## Improvements with more time
 - Add authentication
@@ -122,5 +126,5 @@ http://localhost:5173
 ## Walkthrough Video
 
 ## Contact
-Name: Holland Naftali Nyadimo
+Name: Holland Naftali Nyadimo  
 Email: naftaliholland01@gmail.com
