@@ -42,7 +42,7 @@ export function ApplicationsTable({ applications }: ApplicationTableProps) {
 						<TableCell>{application.company_name ? application.company_name : "-"}</TableCell>
 						<TableCell>{application.application_type}</TableCell>
 						<TableCell>{application.status}</TableCell>
-						<TableCell className="text-right">{application.created_at}</TableCell>
+						<TableCell className="text-right">{new Date(application.created_at).toLocaleDateString()}</TableCell>
 					</TableRow>
 				))}
 			</TableBody>
