@@ -34,9 +34,30 @@ export default function ActionButtons({
 		}
 	)
 
-	const handleSubmit = () => {
-		submitMutation.mutate()
-	};
+	const startReviewMutation = useMutation(
+		{
+			mutationFn: () => {
+				return fetch(`http://localhost:8000/api/applications/${applicationId}/reviews`, {
+					method: "POST"
+				}
+				);
+			},
+			onSuccess: () => queryClient.invalidateQueries({ queryKey: ['application'] })
+		}
+	)
+
+	const approveMutation = useMutation(
+		{
+			mutationFn: () => {
+				return fetch(`http://localhost:8000/api/applications/${applicationId}`, {
+					method: "PATCH",
+					body: JSON.stringify({ "status": "approved" })
+				}
+				);
+			},
+			onSuccess: () => queryClient.invalidateQueries({ queryKey: ['application'] })
+		}
+	)
 
 	return (
 		<div className="flex gap-3">
@@ -49,7 +70,7 @@ export default function ActionButtons({
 					</Button>
 					<Button
 						variant="outline"
-						onClick={handleSubmit}
+						onClick={() => submitMutation.mutate()}
 						disabled={submitMutation.isPending}
 					>
 						{submitMutation.isPending ?
@@ -63,8 +84,13 @@ export default function ActionButtons({
 			{status === 'submitted' && (
 				<Button
 					variant="outline"
+					onClick={() => startReviewMutation.mutate()}
+					disabled={startReviewMutation.isPending}
 				>
-					Start Review
+					{startReviewMutation.isPending ?
+						"Loading ..." :
+						"Start Review"
+					}
 				</Button>
 			)}
 
@@ -72,8 +98,12 @@ export default function ActionButtons({
 				<>
 					<Button
 						variant="outline"
+						onClick={() => approveMutation.mutate()}
 					>
-						Approve
+						{approveMutation.isPending ?
+							"Loading ..." :
+							"Approve"
+						}
 					</Button>
 					<Button
 						variant="outline"
