@@ -1,3 +1,4 @@
+TODO: Here and there
 # Mini Application Workflow Tracker
 
 This is a small application workflow tracker built as a take home assignment for the Junior-Mid Django/React Full-Stack Developer role.
